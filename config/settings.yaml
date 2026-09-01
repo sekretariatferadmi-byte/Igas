@@ -1,0 +1,175 @@
+# ========================================
+# IGAS Application Settings
+# ========================================
+
+app:
+  name: "IGAS"
+  version: "1.0.0"
+  description: "Integrated Automation & Scraping Tools"
+  author: "sekretariatferadmi-byte"
+  debug: false
+
+# ========================================
+# Logging Settings
+# ========================================
+logging:
+  level: "INFO"
+  format: "[{time:YYYY-MM-DD HH:mm:ss}] {level} | {message}"
+  file: "logs/igas.log"
+  rotation: "100 MB"
+  retention: "7 days"
+
+# ========================================
+# Instagram Settings
+# ========================================
+instagram:
+  api_version: "v1.0"
+  delay:
+    between_requests: 2  # seconds
+    between_actions: 5   # seconds
+  limits:
+    posts_per_session: 10
+    stories_per_session: 5
+    max_retries: 3
+  headers:
+    user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+  proxy:
+    enabled: false
+    rotation: true
+
+# ========================================
+# Bot Settings
+# ========================================
+bot:
+  enabled: true
+  interval: 300  # seconds (5 minutes)
+  timeout: 30    # seconds
+  max_workers: 4
+  monitoring:
+    enabled: true
+    metrics_interval: 60
+
+# ========================================
+# Database Settings
+# ========================================
+database:
+  type: "sqlite"  # sqlite, postgresql, mongodb
+  connection_pool_size: 10
+  echo_sql: false
+  auto_migrate: true
+
+# ========================================
+# API Settings
+# ========================================
+api:
+  host: "0.0.0.0"
+  port: 5000
+  workers: 4
+  cors:
+    enabled: true
+    origins: ["*"]
+  rate_limit:
+    enabled: true
+    requests: 100
+    period: 60  # seconds
+
+# ========================================
+# Performance Settings
+# ========================================
+performance:
+  async_enabled: true
+  thread_pool_size: 10
+  connection_pool_size: 20
+  cache_enabled: true
+  cache_ttl: 3600  # seconds (1 hour)
+
+# ========================================
+# Security Settings
+# ========================================
+security:
+  verify_ssl: true
+  encrypt_credentials: true
+  password_hash_algorithm: "bcrypt"
+  jwt:
+    algorithm: "HS256"
+    expiration: 86400  # seconds (24 hours)
+
+# ========================================
+# Retry Configuration
+# ========================================
+retry:
+  max_attempts: 3
+  initial_delay: 1      # seconds
+  max_delay: 60         # seconds
+  backoff_factor: 2
+  exponential: true
+
+# ========================================
+# Feature Flags
+# ========================================
+features:
+  auto_posting: true
+  bot_mode: true
+  scraping: true
+  scheduling: true
+  notifications: true
+  webhook: true
+  api: true
+
+# ========================================
+# External Services
+# ========================================
+services:
+  sentry:
+    enabled: false
+    dsn: ""
+  
+  redis:
+    enabled: false
+    host: "localhost"
+    port: 6379
+    db: 0
+  
+  s3:
+    enabled: false
+    bucket: ""
+    region: ""
+
+# ========================================
+# Notification Settings
+# ========================================
+notifications:
+  email:
+    enabled: false
+    on_error: true
+    on_success: false
+  
+  webhook:
+    enabled: false
+    url: ""
+    secret: ""
+
+# ========================================
+# Module Configurations
+# ========================================
+modules:
+  instagram_tools:
+    enabled: true
+    timeout: 30
+  
+  termux_bot:
+    enabled: true
+    check_interval: 60
+  
+  web_app:
+    enabled: true
+    port: 5000
+  
+  cli_tools:
+    enabled: true
+  
+  scrapers:
+    enabled: true
+    user_agent: "Mozilla/5.0"
+    timeout: 10
+    retries: 3
